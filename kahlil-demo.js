@@ -1,6 +1,8 @@
 // once everything is loaded, we run our Three.js stuff.
     function init() {
 
+        var SPACESHIP_SIZE = 4;
+
         var stats = initStats();
 
         // create a scene, that will hold all our elements such as objects, cameras and lights.
@@ -134,28 +136,15 @@
         function addGeometries(scene) {
             var geoms = [];
 
-            geoms.push(new THREE.CylinderGeometry(1, 4, 4));
-
-            // basic cube
-            geoms.push(new THREE.BoxGeometry(2, 2, 2));
-
-            // basic spherer
-            geoms.push(new THREE.SphereGeometry(2));
-
-            geoms.push(new THREE.IcosahedronGeometry(4));
-
             // create a convex shape (a shape without dents)
             // using a couple of points
             // for instance a cube
             var points = [
-                new THREE.Vector3(2, 2, 2),
-                new THREE.Vector3(2, 2, -2),
-                new THREE.Vector3(-2, 2, -2),
-                new THREE.Vector3(-2, 2, 2),
-                new THREE.Vector3(2, -2, 2),
-                new THREE.Vector3(2, -2, -2),
-                new THREE.Vector3(-2, -2, -2),
-                new THREE.Vector3(-2, -2, 2)
+                new THREE.Vector3(0, 0, 0).multiplyScalar(SPACESHIP_SIZE),
+                new THREE.Vector3(0, 0, 1).multiplyScalar(SPACESHIP_SIZE),
+                new THREE.Vector3(0, 1, 0).multiplyScalar(SPACESHIP_SIZE),
+                new THREE.Vector3(0, 1, 1).multiplyScalar(SPACESHIP_SIZE),
+                new THREE.Vector3(1, .5, .5).multiplyScalar(SPACESHIP_SIZE)
             ];
             geoms.push(new THREE.ConvexGeometry(points));
 
@@ -166,20 +155,6 @@
             var radius = 3;//radius for half_sphere
             for (var angle = 0.0; angle < Math.PI; angle += detail)//loop from 0.0 radians to PI (0 - 180 degrees)
                 pts.push(new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius));//angle/radius to x,z
-            geoms.push(new THREE.LatheGeometry(pts, 12));
-
-            // create a OctahedronGeometry
-            geoms.push(new THREE.OctahedronGeometry(3));
-
-            // create a geometry based on a function
-            geoms.push(new THREE.ParametricGeometry(THREE.ParametricGeometries.mobius3d, 20, 10));
-
-            //
-            geoms.push(new THREE.TetrahedronGeometry(3));
-
-            geoms.push(new THREE.TorusGeometry(3, 1, 10, 10));
-
-            geoms.push(new THREE.TorusKnotGeometry(3, 0.5, 50, 20));
 
             var j = 0;
             for (var i = 0; i < geoms.length; i++) {
@@ -214,7 +189,7 @@
 
             // render using requestAnimationFrame
             requestAnimationFrame(render);
-            for (var i = 3; i < 14; ++i) {
+            for (var i = 3; i < scene.children.length; ++i) {
                 scene.children[i].rotation.y += .05;
             }
             renderer.render(scene, camera);
