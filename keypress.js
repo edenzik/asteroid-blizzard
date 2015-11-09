@@ -1,16 +1,17 @@
 document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 37:
-            alert('left');
+            console.log("left");
+	    alert("hi");
             break;
         case 38:
-            alert('up');
+            console.log("up");
             break;
         case 39:
-            alert('right');
+            console.log("right");
             break;
         case 40:
-            alert('down');
+            console.log("down");
             break;
     }
 };
