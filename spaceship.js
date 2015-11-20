@@ -26,7 +26,9 @@ avatar.traverse(function (e) {
 
 avatar.name="spaceship";
 
-avatar.position.y = 2;
+avatar.position.y = -3;
+avatar.position.x = 0;
+avatar.position.x = 0;
 
 // Add a wireframe mesh on top of the phong mesh
 var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wireframe: true, transparent: true } );

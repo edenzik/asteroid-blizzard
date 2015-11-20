@@ -12,4 +12,4 @@ plane.position.y = 0;
 plane.position.z = 0;
 
 // add the plane to the scene
-scene.add(plane);
+//scene.add(plane);
