@@ -2,7 +2,6 @@ document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 37:
             console.log("left");
-	    
             break;
         case 38:
             console.log("up");

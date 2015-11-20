@@ -78,11 +78,11 @@
             domElement = document.getElementById("WebGL-output");
 
             function mouseMoveListener(event){
-                if (event.buttons) { 
+                if (event.buttons) {
                     scene.rotation.y += event.movementX / 100;
                     console.dir(event);
                     console.log(event.movementX);
-                } 
+                }
             }
 
             domElement.addEventListener("mousemove",mouseMoveListener,false);
@@ -126,7 +126,7 @@
                 case 69: /*E*/  break;
              }
          }
-     
+
         domElement.addEventListener("keydown",keyDownListener,false);
         domElement.setAttribute("tabindex", 0);
 
