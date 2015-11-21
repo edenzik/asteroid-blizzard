@@ -3,10 +3,12 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMapEnabled = true;
 renderer.setClearColor( new THREE.Color(0xEEEEEE, 1.0));
 starsOffset = 0;
-function render() {
-    // render using requestAnimationFrame
-    requestAnimationFrame(render);
 
+// Physijs setup
+Physijs.scripts.worker = './lib/physijs_worker.js';
+Physijs.scripts.ammo = './lib/ammo.js';
+
+function render() {
     // Updates avatar position/rotation based on key-presses
     updateAvatar();
 
@@ -21,6 +23,8 @@ function render() {
     }
     geometry.translate(0,0,-0.01);
     starsOffset -=0.01 ;
-    scene.simulate(undefined, 1);
+
+    scene.simulate();
     renderer.render(scene, camera);
+    requestAnimationFrame(render)
 }

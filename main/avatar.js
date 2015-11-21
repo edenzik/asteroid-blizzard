@@ -33,6 +33,27 @@ avatar.position.y = -1;
 avatar.position.x = 0;
 avatar.position.x = 0;
 
+avatar.turnLeft = function() {
+    playerRotAction.y -= .0001;
+    avatar.rotation.z -=.01;
+}
+
+avatar.turnRight = function() {
+    playerRotAction.y += .0001;
+    avatar.rotation.z+=.01;
+}
+
+avatar.tiltDown = function() {
+    playerRotAction.x += .0001;
+    camera.rotation.x -= .0001;
+    avatar.rotation.x-=.01;
+}
+
+avatar.tiltUp = function() {
+    playerRotAction.x -= .0001;
+    avatar.rotation.x +=.01;
+}
+
 avatar.thrust = function() {
     avatar.thrusting = true;
 }
@@ -54,7 +75,9 @@ function updateAvatar() {
         console.log('updating avatar');
         var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
         var force = new THREE.Vector3(0, 0, enginePower).applyMatrix4(rotation);
-        avatar.applyCentralImpulse(force);
+        var force = new THREE.Vector3(0, -100, 0);
+        // avatar.applyCentralImpulse(force);
+        avatar.setLinearVelocity(new THREE.Vector3(100, -100, 100));
     }
 }
 
