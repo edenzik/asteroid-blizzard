@@ -11,12 +11,12 @@ function render() {
     spacesphere.rotation.y += .0005;
     spacesphere.rotation.z += .0005;
 
-    if (starsOffset < -35 ){
+    if (starsOffset < -15 ){
             console.log(starsOffset);
         starsOffset = 0;
-        geometry.translate(0,0,25);
+        geometry.translate(0,0,15);
     }
-    geometry.translate(0,0,-0.1);
-    starsOffset -=0.1 ;
+    geometry.translate(0,0,-0.01);
+    starsOffset -=0.01 ;
     renderer.render(scene, camera);
 }

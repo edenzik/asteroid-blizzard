@@ -26,7 +26,7 @@ avatar.traverse(function (e) {
 
 avatar.name="spaceship";
 
-avatar.position.y = -3;
+avatar.position.y = -1;
 avatar.position.x = 0;
 avatar.position.x = 0;
 
