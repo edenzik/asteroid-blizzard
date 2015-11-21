@@ -1,4 +1,4 @@
-var scene = new THREE.Scene();
+var scene = new Physijs.Scene();
 // create the ground plane
 var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
 var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});

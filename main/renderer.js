@@ -7,16 +7,20 @@ function render() {
     // render using requestAnimationFrame
     requestAnimationFrame(render);
 
+    // Updates avatar position/rotation based on key-presses
+    updateAvatar();
+
     spacesphere.rotation.x += .0005;
     spacesphere.rotation.y += .0005;
     spacesphere.rotation.z += .0005;
 
     if (starsOffset < -15 ){
-            console.log(starsOffset);
+        console.log(starsOffset);
         starsOffset = 0;
         geometry.translate(0,0,15);
     }
     geometry.translate(0,0,-0.01);
     starsOffset -=0.01 ;
+    scene.simulate(undefined, 1);
     renderer.render(scene, camera);
 }

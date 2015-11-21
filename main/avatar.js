@@ -24,13 +24,38 @@ avatar.traverse(function (e) {
     e.castShadow = true
 });
 
-avatar.name="spaceship";
+// Add a wireframe mesh on top of the phong mesh
+var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wireframe: true, transparent: true } );
+avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
 
+avatar.name="spaceship";
 avatar.position.y = -1;
 avatar.position.x = 0;
 avatar.position.x = 0;
 
-// Add a wireframe mesh on top of the phong mesh
-var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wireframe: true, transparent: true } );
-avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
+avatar.thrust = function() {
+    avatar.thrusting = true;
+}
+
+avatar.stopThrust = function() {
+    avatar.thrusting = false;
+}
+
+avatar.brake = function() {
+    avatar.braking = true;
+}
+
+avatar.stopBrake = function() {
+    avatar.braking = false;
+}
+
+function updateAvatar() {
+    if (avatar.thrusting) {
+        console.log('updating avatar');
+        var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
+        var force = new THREE.Vector3(0, 0, enginePower).applyMatrix4(rotation);
+        avatar.applyCentralImpulse(force);
+    }
+}
+
 scene.add(avatar);
