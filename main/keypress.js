@@ -40,7 +40,7 @@ document.onkeydown = function(e) {
             break;
         case 77: // m key
             console.log('new asteroid!');
-            addAsteroid(5, 5);
+            addAsteroid(5, 1);
             break;
     }
 };

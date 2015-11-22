@@ -1,13 +1,13 @@
 		/* 	Yep, it's a Star Wars: Knights of the Old Republic reference,
-			are you really surprised at this point? 
+			are you really surprised at this point?
 													*/
 		var starQty = 1000;
 			geometry = new THREE.SphereGeometry(20,20, 20);
-                        
+
 
 	    	materialOptions = {
 	    		size: .1, //I know this is the default, it's for you.  Play with it if you want.
-	    		transparency: true, 
+	    		transparency: true,
 	    		opacity: 0.7
 	    	};
 

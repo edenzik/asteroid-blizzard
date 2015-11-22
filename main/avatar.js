@@ -29,29 +29,30 @@ var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wirefram
 avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
 
 avatar.name="spaceship";
-avatar.position.y = -1;
-avatar.position.x = 0;
-avatar.position.x = 0;
 
 avatar.turnLeft = function() {
     playerRotAction.y -= .0001;
-    avatar.rotation.z -=.01;
+    avatar.__dirtyRotation = true;
+    avatar.rotateZ(-leftRightTilt);
 }
 
 avatar.turnRight = function() {
     playerRotAction.y += .0001;
-    avatar.rotation.z+=.01;
+    avatar.__dirtyRotation = true;
+    avatar.rotateZ(leftRightTilt);
 }
 
 avatar.tiltDown = function() {
     playerRotAction.x += .0001;
     camera.rotation.x -= .0001;
-    avatar.rotateX(-.01);
+    avatar.__dirtyRotation = true;
+    avatar.rotateX(-upDownTilt);
 }
 
 avatar.tiltUp = function() {
     playerRotAction.x -= .0001;
-    avatar.rotation.x +=.01;
+    avatar.__dirtyRotation = true;
+    avatar.rotateX(upDownTilt);
 }
 
 avatar.thrust = function() {
@@ -70,15 +71,18 @@ avatar.stopBrake = function() {
     avatar.braking = false;
 }
 
+// Update avatar according to current controls
 function updateAvatar() {
+    var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
     if (avatar.thrusting) {
         console.log('updating avatar');
         console.log(avatar);
-        var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
         var force = new THREE.Vector3(0, 0, enginePower).applyMatrix4(rotation);
-        var force = new THREE.Vector3(0, -100, 0);
         avatar.applyCentralImpulse(force);
+        console.log(spacesphere);
     }
 }
 
+// Make camera follow avatar
+avatar.add(camera);
 scene.add(avatar);

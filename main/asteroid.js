@@ -31,10 +31,13 @@ function addAsteroid(size, speed) {
         e.castShadow = true
     });
 
-    // Starting random position, to be placed in a quadrant
-    var start = new THREE.Vector3(10, -5, 20);
+    // Get starting position in front of ship
+    var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
+    var direction = new THREE.Vector3( 1, 1, 1 ).applyMatrix4(rotation);
+    var start = new THREE.Vector3(avatar.position.x, 10 * (avatar.position.y - direction.y), 10 * (avatar.position.z + direction.z));
+    console.log(start);
     // Heading toward this position
-    var target = new THREE.Vector3(0, 0, 0);
+    var target = avatar.position;
 
     // Set the direction, speed
     target.sub(start);
@@ -44,8 +47,8 @@ function addAsteroid(size, speed) {
     mesh.position.copy(start);
 
     mesh.name = "Asteroid";
-
     scene.add(mesh);
+
     mesh.setAngularVelocity(new THREE.Vector3(Math.random()*5, Math.random()*5, Math.random()*5));
     mesh.setLinearVelocity(target);
 }

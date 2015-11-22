@@ -4,17 +4,11 @@ renderer.shadowMapEnabled = true;
 renderer.setClearColor( new THREE.Color(0xEEEEEE, 1.0));
 starsOffset = 0;
 
-// Physijs setup
-Physijs.scripts.worker = './lib/physijs_worker.js';
-Physijs.scripts.ammo = './lib/ammo.js';
-
 function render() {
     // Updates avatar position/rotation based on key-presses
     updateAvatar();
-
-    spacesphere.rotation.x += .0005;
-    spacesphere.rotation.y += .0005;
-    spacesphere.rotation.z += .0005;
+    updateSpacesphere();
+    updateLight();
 
     if (starsOffset < -15 ){
         console.log(starsOffset);
