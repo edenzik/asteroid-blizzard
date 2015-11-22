@@ -19,17 +19,19 @@ spotLight.position.set(-40, 40, 50);
 spotLight.castShadow = true;
 scene.add(spotLight);
 
+
 // Adjust lights so they follow the spaceship
 function updateLights() {
-    spotLight.position.x = avatar.position.x - 40;
-    spotLight.position.y = avatar.position.y + 60;
-    spotLight.position.z = avatar.position.z - 10;
+    spotLight.position.x = camera.position.x;
+    spotLight.position.y = camera.position.y;
+    spotLight.position.z = camera.position.z;
 
-    spotLight2.position.x = avatar.position.x + 40;
-    spotLight2.position.y = avatar.position.y - 60;
-    spotLight2.position.z = avatar.position.z + 30;
+    spotLight2.position.x = camera.position.x;
+    spotLight2.position.y = camera.position.y;
+    spotLight2.position.z = camera.position.z;
 
-    spotLight3.position.x = avatar.position.x - 40;
-    spotLight3.position.y = avatar.position.y + 40;
-    spotLight3.position.z = avatar.position.z + 50;
+    spotLight3.position.x = camera.position.x;
+    spotLight3.position.y = camera.position.y;
+    spotLight3.position.z = camera.position.z;
+
 }
