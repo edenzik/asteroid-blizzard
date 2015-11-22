@@ -19,10 +19,9 @@ var playerRotAction = {x:0,y:0,z:0};
 
 scene.add(spacesphere);
 
+// Adjust spacesphere so it follows spaceship
 function updateSpacesphere() {
-    //console.log('updating spacesphere position from ' + spacesphere.position + ' to ' + avatar.position);
     spacesphere.position.x = avatar.position.x;
     spacesphere.position.y = avatar.position.y;
     spacesphere.position.z = avatar.position.z;
-    //spacesphere.setPosition(avatar.position);
 }

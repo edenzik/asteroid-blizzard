@@ -8,7 +8,7 @@ function render() {
     // Updates avatar position/rotation based on key-presses
     updateAvatar();
     updateSpacesphere();
-    updateLight();
+    updateLights();
 
     if (starsOffset < -15 ){
         console.log(starsOffset);
