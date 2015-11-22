@@ -29,6 +29,7 @@ var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wirefram
 avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
 
 avatar.name="spaceship";
+avatar.speed = 0;
 
 avatar.turnLeft = function() {
     playerRotAction.y -= .0001;
@@ -71,18 +72,33 @@ avatar.stopBrake = function() {
     avatar.braking = false;
 }
 
-// Update avatar according to current controls
-function updateAvatar() {
-    var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
-    if (avatar.thrusting) {
-        console.log('updating avatar');
-        console.log(avatar);
-        var force = new THREE.Vector3(0, 0, enginePower).applyMatrix4(rotation);
-        avatar.applyCentralImpulse(force);
-        console.log(spacesphere);
-    }
-}
-
 // Make camera follow avatar
 avatar.add(camera);
 scene.add(avatar);
+
+// Update avatar according to current controls
+function updateAvatar() {
+    reorientLinearVelocity();
+    if (avatar.thrusting) {
+        impulseThrust(1);
+    }
+    if (avatar.braking) {
+        impulseThrust(-1);
+    }
+}
+
+// Orients the linear velocity to face in the direction of the ship
+function reorientLinearVelocity() {
+    var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
+    var direction = new THREE.Vector3(0, 0, 1).applyMatrix4(rotation);
+    var magnitude = avatar.getLinearVelocity().length();
+    avatar.setLinearVelocity(direction.multiplyScalar(magnitude));
+}
+
+// Updates the avatar position via impulse thrusting
+// Pass in 1 for positive direction, -1 for negative direction
+function impulseThrust(direction) {
+    var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
+    var force = new THREE.Vector3(0, 0, direction * impulseEnginePower).applyMatrix4(rotation);
+    avatar.applyCentralImpulse(force);
+}
