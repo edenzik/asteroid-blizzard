@@ -21,8 +21,6 @@ scene.add(spotLight);
 
 // Adjust lights so they follow the spaceship
 function updateLights() {
-    console.log(spotLight.position);
-    console.log(avatar.position);
     spotLight.position.x = avatar.position.x - 40;
     spotLight.position.y = avatar.position.y + 60;
     spotLight.position.z = avatar.position.z - 10;
