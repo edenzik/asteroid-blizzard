@@ -24,7 +24,7 @@ function render() {
     geometry.translate(0,0,-0.01);
     starsOffset -=0.01 ;
 
-    scene.simulate();
+    scene.simulate(undefined, 1);
     renderer.render(scene, camera);
     requestAnimationFrame(render)
 }

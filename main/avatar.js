@@ -46,7 +46,7 @@ avatar.turnRight = function() {
 avatar.tiltDown = function() {
     playerRotAction.x += .0001;
     camera.rotation.x -= .0001;
-    avatar.rotation.x-=.01;
+    avatar.rotateX(-.01);
 }
 
 avatar.tiltUp = function() {
@@ -73,11 +73,11 @@ avatar.stopBrake = function() {
 function updateAvatar() {
     if (avatar.thrusting) {
         console.log('updating avatar');
+        console.log(avatar);
         var rotation = new THREE.Matrix4().extractRotation(avatar.matrix);
         var force = new THREE.Vector3(0, 0, enginePower).applyMatrix4(rotation);
         var force = new THREE.Vector3(0, -100, 0);
-        // avatar.applyCentralImpulse(force);
-        avatar.setLinearVelocity(new THREE.Vector3(100, -100, 100));
+        avatar.applyCentralImpulse(force);
     }
 }
 

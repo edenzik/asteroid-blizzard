@@ -1,1 +1,1 @@
-enginePower = 30;
+enginePower = 300;
