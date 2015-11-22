@@ -121,6 +121,7 @@ function updateAvatar() {
         avatar.__dirtyRotation = true;
         avatar.rotateX(upDownTilt);
     }
+    //capMaxSpeed();
 }
 
 // Orients the linear velocity to face in the direction of the ship
@@ -129,6 +130,15 @@ function reorientLinearVelocity() {
     var direction = new THREE.Vector3(0, 0, 1).applyMatrix4(rotation);
     var magnitude = avatar.getLinearVelocity().length();
     avatar.setLinearVelocity(direction.multiplyScalar(magnitude));
+}
+
+// Makes sure that the ship doesn't move past max speed
+function capMaxSpeed() {
+    var speed = avatar.getLinearVelocity().length();
+    if (speed > SHIP_MAX_SPEED) {
+        var newVelocity = avatar.getLinearVelocity().normalize().multiplyScalar(SHIP_MAX_SPEED);
+        avatar.setLinearVelocity(newVelocity);
+    }
 }
 
 // Updates the avatar position via impulse thrusting

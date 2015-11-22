@@ -65,6 +65,9 @@ document.onkeyup = function(e) {
         case 65: // A key
             avatar.stopTurnLeft();
             break;
+        case 66: // B key
+            avatar.stopBrake();
+            break;
         case 68: // D key
             avatar.stopTurnRight();
             break;
