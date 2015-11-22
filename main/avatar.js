@@ -29,31 +29,50 @@ var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wirefram
 avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
 
 avatar.name="spaceship";
-avatar.speed = 0;
+
+avatar.turningLeft = false;
+avatar.turningRight = false;
+avatar.tiltingUp = false;
+avatar.tiltingDown = false;
+avatar.thrusting = false;
+avatar.braking = false;
 
 avatar.turnLeft = function() {
     playerRotAction.y -= .0001;
-    avatar.__dirtyRotation = true;
-    avatar.rotateZ(-leftRightTilt);
+    avatar.turningLeft = true;
+
+}
+
+avatar.stopTurnLeft = function() {
+    avatar.turningLeft = false;
 }
 
 avatar.turnRight = function() {
     playerRotAction.y += .0001;
-    avatar.__dirtyRotation = true;
-    avatar.rotateZ(leftRightTilt);
+    avatar.turningRight = true;
+
+}
+
+avatar.stopTurnRight = function() {
+    avatar.turningRight = false;
 }
 
 avatar.tiltDown = function() {
     playerRotAction.x += .0001;
-    camera.rotation.x -= .0001;
-    avatar.__dirtyRotation = true;
-    avatar.rotateX(-upDownTilt);
+    avatar.tiltingDown = true;
+}
+
+avatar.stopTiltDown = function() {
+    avatar.tiltingDown = false;
 }
 
 avatar.tiltUp = function() {
     playerRotAction.x -= .0001;
-    avatar.__dirtyRotation = true;
-    avatar.rotateX(upDownTilt);
+    avatar.tiltingUp = true;
+}
+
+avatar.stopTiltUp = function() {
+    avatar.tiltingUp = false;
 }
 
 avatar.thrust = function() {
@@ -84,6 +103,22 @@ function updateAvatar() {
     }
     if (avatar.braking) {
         impulseThrust(-1);
+    }
+    if (avatar.turningLeft) {
+        avatar.__dirtyRotation = true;
+        avatar.rotateZ(-leftRightTilt);
+    }
+    if (avatar.turningRight) {
+        avatar.__dirtyRotation = true;
+        avatar.rotateZ(leftRightTilt);
+    }
+    if (avatar.tiltingUp) {
+        avatar.__dirtyRotation = true;
+        avatar.rotateX(-upDownTilt);
+    }
+    if (avatar.tiltingDown) {
+        avatar.__dirtyRotation = true;
+        avatar.rotateX(upDownTilt);
     }
 }
 
