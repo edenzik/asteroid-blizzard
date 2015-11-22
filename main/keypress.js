@@ -63,16 +63,16 @@ document.onkeyup = function(e) {
         case 40: // down arrow
             break;
         case 65: // A key
-            break;
-        case 66: // B key
-            console.log("B");
-            avatar.stopBrake();
+            avatar.stopTurnLeft();
             break;
         case 68: // D key
+            avatar.stopTurnRight();
             break;
         case 83: // S key
+            avatar.stopTiltUp();
             break;
         case 87: // w key
+            avatar.stopTiltDown();
             break;
     }
 };
