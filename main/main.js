@@ -1,6 +1,8 @@
-Physijs.scripts.worker = 'lib/physijs_worker.js';
-Physijs.scripts.ammo = 'lib/ammo.js';
 render();
+// Set up game clock
+clock = new THREE.Clock(false);
+clock.start();
+
 window.onload = function() {
 	document.body.appendChild( renderer.domElement );
 }

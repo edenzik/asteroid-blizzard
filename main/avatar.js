@@ -104,6 +104,7 @@ function updateAvatar() {
     }
     if (avatar.braking) {
         impulseThrust(-1);
+        avatar.setAngularVelocity(avatar.getAngularVelocity().multiplyScalar(1 / 2));
     }
     if (avatar.turningLeft) {
         avatar.__dirtyRotation = true;
@@ -121,7 +122,7 @@ function updateAvatar() {
         avatar.__dirtyRotation = true;
         avatar.rotateX(upDownTilt);
     }
-    //capMaxSpeed();
+    capMaxSpeed();
 }
 
 // Orients the linear velocity to face in the direction of the ship
@@ -134,10 +135,8 @@ function reorientLinearVelocity() {
 
 // Makes sure that the ship doesn't move past max speed
 function capMaxSpeed() {
-    var speed = avatar.getLinearVelocity().length();
-    if (speed > SHIP_MAX_SPEED) {
-        var newVelocity = avatar.getLinearVelocity().normalize().multiplyScalar(SHIP_MAX_SPEED);
-        avatar.setLinearVelocity(newVelocity);
+    if (avatar.getLinearVelocity().length() > SHIP_MAX_SPEED * 1.05) {
+        avatar.setLinearVelocity(avatar.getLinearVelocity().normalize().multiplyScalar(SHIP_MAX_SPEED));
     }
 }
 
