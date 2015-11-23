@@ -14,8 +14,8 @@ var avatarGeometry = new THREE.ConvexGeometry(points);
 avatarGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 0, -1.8) );
 
 var material = new THREE.MeshPhongMaterial({color: 0xffff40});
-material.emissive = new THREE.Color(0x001005);
-material.specular = new THREE.Color(0xeeee00);
+material.emissive = new THREE.Color("rgb(100%, 0%, 0%)");
+material.specular = new THREE.Color("rgb(100%, 0%, 0%)");
 material.shininess = 100;
 material.metal = true;
 material.shading = THREE.FlatShading;
