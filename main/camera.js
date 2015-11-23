@@ -1,6 +1,17 @@
-        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        // position and point the camera to the center of the scene
-        camera.position.x = 0;
-        camera.position.y = 0;
-        camera.position.z = -15;
-        camera.lookAt(new THREE.Vector3(0, 0, 0));
+var camera = new THREE.TargetCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+camera.addTarget( {
+    name: 'avatar',
+    targetObject: avatar,
+    cameraPosition: new THREE.Vector3(0, 0, -15),
+    fixed: false,
+    stiffness: .1,
+    matchRotation: false
+});
+
+camera.setTarget('avatar');
+
+function updateCamera() {
+    camera.update();
+    camera.lookAt(avatar.position);
+}
