@@ -1,6 +1,6 @@
 //Space background is a large sphere
 var spacetex = THREE.ImageUtils.loadTexture("texture/space.jpg");
-var spacesphereGeo = new THREE.SphereGeometry(20,20,20);
+var spacesphereGeo = new THREE.SphereGeometry(SPACE_SPHERE_SIZE, SPACE_SPHERE_SIZE, SPACE_SPHERE_SIZE);
 var spacesphereMat = new THREE.MeshPhongMaterial();
 spacesphereMat.map = spacetex;
 

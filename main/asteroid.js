@@ -1,8 +1,10 @@
 function getVisiblePoint(minDistance) {
     var starVertex = new THREE.Vector3();
-    starVertex.x = camera.position.x + Math.random() * 40 + -10;
-    starVertex.y = camera.position.y + Math.random() * 40 + -10;
-    starVertex.z = camera.position.z + Math.random() * 40 + -10;
+    var max = MAX_ASTEROID_DISTANCE;
+    var min = MIN_ASTEROID_DISTANCE;
+    starVertex.x = avatar.position.x + Math.random() * (max - min) + min;
+    starVertex.y = avatar.position.y + Math.random() * (max - min) + min;
+    starVertex.z = avatar.position.z + Math.random() * (max - min) + min;
     return starVertex;
 }
 
