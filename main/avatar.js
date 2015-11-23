@@ -1,13 +1,14 @@
 var points = [
         new THREE.Vector3(0, 0, 5),
         new THREE.Vector3(2, 0, 0),
-        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(0, 0, -2),
         new THREE.Vector3(-2, 0, 0),
         new THREE.Vector3(0, -.5, 1),
         new THREE.Vector3(0, -.5, 2),
-        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(0, 2, 0),
         new THREE.Vector3(0, 1, 2)
     ];
+    
 var avatarGeometry = new THREE.ConvexGeometry(points);
 // Move the ship's center back so that it rotates as expected
 avatarGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 0, -1.8) );
