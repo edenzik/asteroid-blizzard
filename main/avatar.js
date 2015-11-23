@@ -1,12 +1,12 @@
 var points = [
-        new THREE.Vector3(0, 0, 5),
-        new THREE.Vector3(2, 0, 0),
+        new THREE.Vector3(0, 0, 7),
+        new THREE.Vector3(3, -1, 0),
         new THREE.Vector3(0, 0, -2),
-        new THREE.Vector3(-2, 0, 0),
+        new THREE.Vector3(-3, -1, 0),
         new THREE.Vector3(0, -.5, 1),
         new THREE.Vector3(0, -.5, 2),
-        new THREE.Vector3(0, 2, 0),
-        new THREE.Vector3(0, 1, 2)
+        new THREE.Vector3(0, 0.7, 0),
+        new THREE.Vector3(0, 0.5, 2)
     ];
     
 var avatarGeometry = new THREE.ConvexGeometry(points);
