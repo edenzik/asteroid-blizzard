@@ -10,8 +10,16 @@ function init() {
     document.getElementById("WebGL-output").appendChild(renderer.domElement);
     // Create and bind listeners
     createEventListeners();
+    // Start music
+    initMusic();
 
     render();
+}
+
+function initMusic() {
+    var audio = new Audio('audio/epic.mp3');
+    audio.loop = true;
+    audio.play();
 }
 
 function initStats() {
