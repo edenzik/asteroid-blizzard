@@ -1,11 +1,13 @@
 // Last position at which stars were generated
 var lastPos = null;
 function renderStars() {
-    if (lastPos != null && distance(lastPos, avatar.position) < STAR_RENDER_RADIUS) {
+    if (lastPos != null && distance(lastPos, avatar.position) < (STAR_RENDER_DISTANCE / 3)) {
         return;
     }
     lastPos = new THREE.Vector3().copy(avatar.position);
-    var starQty = Math.random() * MAX_STARS;
+    // Number of stars is cubically related to the render distance
+    // because as distance increases linearly, volume increases cubically
+    var starQty = Math.random() * (.05 * Math.pow(STAR_RENDER_DISTANCE, 3));
     starGeo = new THREE.SphereGeometry(50);
 
     materialOptions = {
@@ -17,9 +19,9 @@ function renderStars() {
 
     for (var i = 0; i < starQty; i++) {
         var starVertex = new THREE.Vector3();
-        starVertex.x = camera.position.x + Math.random() * 40 + -10;
-        starVertex.y = camera.position.y + Math.random() * 40 + -10;
-        starVertex.z = camera.position.z + Math.random() * 40 + -10;
+        starVertex.x = camera.position.x + Math.random() * STAR_RENDER_DISTANCE - (STAR_RENDER_DISTANCE / 2);
+        starVertex.y = camera.position.y + Math.random() * STAR_RENDER_DISTANCE - (STAR_RENDER_DISTANCE / 2);
+        starVertex.z = camera.position.z + Math.random() * STAR_RENDER_DISTANCE - (STAR_RENDER_DISTANCE / 2);
 
         starGeo.vertices.push(starVertex);
     }

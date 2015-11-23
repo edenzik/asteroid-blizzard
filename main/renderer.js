@@ -2,17 +2,11 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMapEnabled = true;
 renderer.setClearColor( new THREE.Color(0xEEEEEE, 1.0));
-starsOffset = 0;
-
-// Set up game clock
-clock = new THREE.Clock(false);
-clock.start();
-
-// Render initial stars
-renderStars();
 
 function render() {
-    // Updates avatar position/rotation based on key-presses
+    // Update fps stats
+    stats.update();
+    // Update avatar, spacesphere, lights, and stars
     updateAvatar();
     updateSpacesphere();
     updateLights();
