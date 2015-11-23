@@ -12,14 +12,18 @@ function render() {
     updateLights();
     renderStars();
 
-    // add asteroid every n seconds
     var time = clock.getElapsedTime();
     var difficulty = 1;
+
+    // add asteroid every n seconds
     if (time % 1 < 1 / 59 ) {
-        addAsteroid(Math.random() * 6 + 2,
-        Math.random()*(5+difficulty) + 4*difficulty + 3);
+        // add difficulty # of asteroids
+        for (var i = 0; i < difficulty; ++i) {
+            addAsteroid(Math.random() * 6 + 2, Math.random()*(5+difficulty) + 4*difficulty + 3);
+        }
         cleanup();
     }
+    // Increment difficulty every 5 seconds
     if (time % 5 < 1 / 59) {
         difficulty++;
     }
