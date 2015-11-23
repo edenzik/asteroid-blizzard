@@ -55,7 +55,7 @@ function addAsteroid(size, speed) {
 
     mesh.position.copy(start);
 
-    mesh.name = "Asteroid";
+    mesh.name = "asteroid";
     scene.add(mesh);
 
     mesh.setAngularVelocity(new THREE.Vector3(Math.random()*5, Math.random()*5, Math.random()*5));

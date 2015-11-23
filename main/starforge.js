@@ -30,6 +30,8 @@ function renderStars() {
     stars.position.x = avatar.position.x;
     stars.position.y = avatar.position.y;
     stars.position.z = avatar.position.z;
+    stars.name = "stars";
+    
     scene.add(stars);
 }
 

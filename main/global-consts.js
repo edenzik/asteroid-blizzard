@@ -18,3 +18,6 @@ SPACE_SPHERE_SIZE = 200;
 MIN_ASTEROID_DISTANCE = 50;
 // Maximum distance from avatar at which an asteroid can be rendered
 MAX_ASTEROID_DISTANCE = 20;
+// Distance at which objects (i.e. asteroids and stars) should be cleaned up
+// to free resources
+CLEANUP_DISTANCE = 500;
