@@ -5815,6 +5815,7 @@ a:hover {
  */
 html,
 body {
+        zoom: 100%;
   height: 100%;
   background-color: #333;
 }
