@@ -34,3 +34,13 @@ function initStats() {
 }
 
 window.onload = init;
+window.addEventListener( 'resize', onWindowResize, false ); //Dynamic window resize
+
+function onWindowResize(){
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
