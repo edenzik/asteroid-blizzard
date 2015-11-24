@@ -19,13 +19,12 @@ function render() {
     // add asteroid every n seconds
     if (time % 2 < 1 / 59 ) {
         // add difficulty # of asteroids
-        for (var i = 0; i < difficulty; ++i) {
+        for (var i = 0; i < 3 * difficulty; ++i) {
             addAsteroid(Math.random() * 6 + 2, Math.random()*(5+difficulty) + 4*difficulty + 3);
         }
     }
     // Increment difficulty every 5 seconds
     if (time % 5 < 1 / 59) {
-        console.log(camera);
         difficulty++;
         cleanup();
     }

@@ -10,8 +10,13 @@ upDownTilt = .03;
 leftRightTilt = .03;
 // Maximum speed of spaceship
 SHIP_MAX_SPEED = 25;
+// Radius from the last star rendering position the ship must travel before
+// more stars are generated
+STAR_RENDER_RADIUS = 3;
 // Distance in front of the camera at which stars should be rendered
-STAR_RENDER_DISTANCE = 100;
+STAR_RENDER_DISTANCE = 20;
+// Maximum number of stars to be rendered at each star rendering step
+MAX_STARS = 100;
 // Radius and number of fragments for space sphere
 SPACE_SPHERE_SIZE = 200;
 // Minimum distance from avatar at which an asteroid can be rendered
