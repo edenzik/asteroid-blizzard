@@ -101,6 +101,7 @@ avatar.addEventListener( 'collision', function( other_object, relative_velocity,
         var crashNum = Math.floor((Math.random() * 4) + 1);
         var audio = new Audio('audio/crash-' + crashNum + '.mp3');
         audio.play();
+        scene.remove(other_object);
     }
 });
 
