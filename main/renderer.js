@@ -10,7 +10,6 @@ function render() {
     updateAvatar();
     updateCamera();
     updateSpacesphere();
-    updateLights();
     renderStars();
 
     var time = clock.getElapsedTime();
@@ -18,8 +17,9 @@ function render() {
 
     // add asteroid every n seconds
     if (time % 2 < 1 / 59 ) {
+        renderLights();
         // add difficulty # of asteroids
-        for (var i = 0; i < 3 * difficulty; ++i) {
+        for (var i = 0; i < 10 * difficulty; ++i) {
             addAsteroid(Math.random() * 6 + 2, Math.random()*(5+difficulty) + 4*difficulty + 3);
         }
     }
@@ -39,15 +39,15 @@ function cleanup() {
     for (var i = scene.children.length - 1; i >= 0; --i) {
         // Cleanup asteroids
         var child = scene.children[i];
-        if (child.name == "asteroid" || child.name == "stars") {
-            var distance = new THREE.Vector3().copy(child.position).sub(avatar.position).length();
-            if (child.name == "asteroid" && distance > SPACE_SPHERE_SIZE * 1.2) {
-                scene.remove(i);
-            }
-            if (distance > CLEANUP_DISTANCE) {
-                console.log('Cleaning!');
-                scene.remove(i);
-            }
+        var distance = new THREE.Vector3().copy(child.position).sub(avatar.position).length();
+        if (child.name = "light" || distance > 5) {
+            scene.remove(i);
+        }
+        if (child.name == "asteroid" && distance > SPACE_SPHERE_SIZE * 1.2) {
+            scene.remove(i);
+        }
+        if (distance > CLEANUP_DISTANCE) {
+            scene.remove(i);
         }
     }
 }

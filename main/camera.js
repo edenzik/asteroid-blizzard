@@ -5,7 +5,7 @@ camera.addTarget( {
     targetObject: avatar,
     cameraPosition: new THREE.Vector3(0, 0, -15),
     fixed: false,
-    stiffness: .5,
+    stiffness: .1,
     matchRotation: false
 });
 
