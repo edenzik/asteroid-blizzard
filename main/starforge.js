@@ -1,11 +1,7 @@
 // Last position at which stars were generated
 var lastPos = null;
 function renderStars() {
-    if (lastPos != null) {
-        console.log(distance(lastPos, avatar.position));
-    }
     if (lastPos != null && distance(lastPos, avatar.position) < 5) {
-        console.log('skipped!');
         return;
     }
     lastPos = new THREE.Vector3().copy(avatar.position);

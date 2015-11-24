@@ -60,14 +60,5 @@ function addAsteroid(size, speed) {
 
         mesh.setAngularVelocity(new THREE.Vector3(Math.random()*5, Math.random()*5, Math.random()*5));
         mesh.setLinearVelocity(target);
-        mesh.addEventListener( 'collision', function( other_object, relative_velocity, relative_rotation, contact_normal ) {
-                if (other_object.name == "spaceship"){
-                        console.log(other_object);
-                        console.log(mesh);
-                        incrementScore(10);
-                        $("#WebGL-output").fadeOut(100).fadeIn(100);
-                        
-
-                }
-        });
+        
 }

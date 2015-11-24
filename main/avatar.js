@@ -93,6 +93,17 @@ avatar.stopBrake = function() {
     avatar.braking = false;
 }
 
+avatar.addEventListener( 'collision', function( other_object, relative_velocity, relative_rotation, contact_normal ) {
+    if (other_object.name == "asteroid"){
+        incrementScore(10);
+        $("#WebGL-output").fadeOut(100).fadeIn(100);
+        // Get crash num (random num between 1 and 4)
+        var crashNum = Math.floor((Math.random() * 4) + 1);
+        var audio = new Audio('audio/crash-' + crashNum + '.mp3');
+        audio.play();
+    }
+});
+
 
 // Update avatar according to current controls
 function updateAvatar() {
