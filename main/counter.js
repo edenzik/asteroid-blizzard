@@ -1,6 +1,6 @@
 var value = 0;
 
-function incrementBy(num)
+function incrementScore(num)
 {
         for (var i = value; i<=value+num; i++){
             $('.count').delay(1000).text(i); //increments timeout
