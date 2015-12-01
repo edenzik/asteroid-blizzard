@@ -12,7 +12,18 @@ function render() {
     updateSpacesphere();
     updateLights();
     renderStars();
+    earthMesh.position.x = avatar.position.x+7;
+    earthMesh.position.y = avatar.position.y+20;
+    earthMesh.position.z = avatar.position.z+5;
+    earthMesh.rotation.z += .1*1/8;     
 
+    sunMesh.position.x = avatar.position.x-9;
+    sunMesh.position.y = avatar.position.y+20;
+    sunMesh.position.z = avatar.position.z+5;
+
+    moonGlow.position.x = avatar.position.x-9;
+    moonGlow.position.y = avatar.position.y+20;
+    moonGlow.position.z = avatar.position.z+5;
     var time = clock.getElapsedTime();
     var difficulty = 1;
 
