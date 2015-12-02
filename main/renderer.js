@@ -3,7 +3,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMapEnabled = true;
 renderer.setClearColor( new THREE.Color(0xEEEEEE, 1.0));
 
+var counter = 0;
+
 function render() {
+    counter++;
     // Update fps stats
     stats.update();
     // Update avatar, spacesphere, lights, and stars
@@ -12,10 +15,17 @@ function render() {
     updateSpacesphere();
     updateLights();
     renderStars();
+
+    // Update ship's reflection cube when appropriate
+    if (counter % REFLECTION_UPDATE_CYCLE == 0) {
+        counter %= REFLECTION_UPDATE_CYCLE;
+        cubeCamera.update(renderer, scene);
+    }
+
     earthMesh.position.x = avatar.position.x+7;
     earthMesh.position.y = avatar.position.y+20;
     earthMesh.position.z = avatar.position.z+5;
-    earthMesh.rotation.z += .1*1/8;     
+    earthMesh.rotation.z += .1*1/8;
 
     sunMesh.position.x = avatar.position.x-9;
     sunMesh.position.y = avatar.position.y+20;

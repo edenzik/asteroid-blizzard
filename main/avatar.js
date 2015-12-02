@@ -1,22 +1,22 @@
 var points = [
-        new THREE.Vector3(0, 0, 5),
-        new THREE.Vector3(2, 0, 0),
-        new THREE.Vector3(0, 0, -1),
-        new THREE.Vector3(-2, 0, 0),
-        new THREE.Vector3(0, 1, 0),
-        new THREE.Vector3(0, 1, 2)
-    ];
+    new THREE.Vector3(0, 0, 5),
+    new THREE.Vector3(2, 0, 0),
+    new THREE.Vector3(0, 0, -1),
+    new THREE.Vector3(-2, 0, 0),
+    new THREE.Vector3(0, 1, 0),
+    new THREE.Vector3(0, 1, 2)
+];
 
 var avatarGeometry = new THREE.ConvexGeometry(points);
 // Move the ship's center back so that it rotates as expected
 avatarGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 0, -1.8) );
 
-var material = new THREE.MeshPhongMaterial({color: 0xffff40});
-material.emissive = new THREE.Color("rgb(100%, 0%, 0%)");
-material.specular = new THREE.Color("rgb(100%, 0%, 0%)");
-material.shininess = 100;
-material.metal = true;
-material.shading = THREE.FlatShading;
+var material = new THREE.MeshBasicMaterial({color: 0xffff40});
+// material.emissive = new THREE.Color("rgb(100%, 0%, 0%)");
+// material.specular = new THREE.Color("rgb(100%, 0%, 0%)");
+// material.shininess = 100;
+// material.metal = true;
+// material.shading = THREE.FlatShading;
 
 var avatar = new Physijs.ConvexMesh(avatarGeometry, material);
 avatar.traverse(function (e) {
@@ -27,6 +27,10 @@ avatar.thrusting = false;
 // Add a wireframe mesh on top of the phong mesh
 var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wireframe: true, transparent: true } );
 avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
+
+// Add cube camera for reflections
+var cubeCamera = new THREEx.CubeCamera(avatar);
+material.envMap = cubeCamera.textureCube;
 
 avatar.name="spaceship";
 
@@ -50,7 +54,6 @@ avatar.stopTurnLeft = function() {
 avatar.turnRight = function() {
     playerRotAction.y += .0001;
     avatar.turningRight = true;
-
 }
 
 avatar.stopTurnRight = function() {
@@ -103,6 +106,7 @@ avatar.addEventListener( 'collision', function( other_object, relative_velocity,
     }
 });
 
+counter = 0;
 
 // Update avatar according to current controls
 function updateAvatar() {
@@ -131,6 +135,8 @@ function updateAvatar() {
         avatar.rotateX(upDownTilt);
     }
     capMaxSpeed();
+
+    material.envMap = cubeCamera.textureCube;
 }
 
 // Orients the linear velocity to face in the direction of the ship

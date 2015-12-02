@@ -26,3 +26,6 @@ MAX_ASTEROID_DISTANCE = 20;
 // Distance at which objects (i.e. asteroids and stars) should be cleaned up
 // to free resources
 CLEANUP_DISTANCE = 500;
+
+// # of frames after which the ship's hull's reflections should update
+REFLECTION_UPDATE_CYCLE = 8;
