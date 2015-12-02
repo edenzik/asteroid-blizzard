@@ -33,9 +33,11 @@ function render() {
     sunMesh.position.y = avatar.position.y+20;
     sunMesh.position.z = avatar.position.z+5;
 
-    moonGlow.position.x = avatar.position.x-9;
-    moonGlow.position.y = avatar.position.y+20;
-    moonGlow.position.z = avatar.position.z+5;
+    ball.position.x = avatar.position.x-9;
+    ball.position.y = avatar.position.y+20;
+    ball.position.z = avatar.position.z+5;
+    var delta = clock.getDelta();
+	customUniforms.time.value += delta;
     var time = clock.getElapsedTime();
     var difficulty = 1;
 
