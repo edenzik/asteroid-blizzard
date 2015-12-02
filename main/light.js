@@ -1,6 +1,10 @@
 // add subtle ambient lighting
-var ambientLight = new THREE.AmbientLight(0xffffff);
+var ambientLight = new THREE.AmbientLight(0xffffff / 8);
 scene.add(ambientLight);
+
+var directional = new THREE.DirectionalLight(0xffffff, 1.0);
+directional.position.set(1, 0, 0);
+scene.add(directional);
 
 //create two spotlights to illuminate the scene
 /**
@@ -28,17 +32,7 @@ scene.add(spotLight3);
 
 // Adjust lights so they follow the spaceship
 function updateLights() {
-    /**
-    spotLight.position.x = avatar.position.x - 40;
-    spotLight.position.y = avatar.position.y + 60;
-    spotLight.position.z = avatar.position.z - 10;
-
-    spotLight2.position.x = avatar.position.x + 40;
-    spotLight2.position.y = avatar.position.y - 60;
-    spotLight2.position.z = avatar.position.z + 30;
-
-    spotLight3.position.x = avatar.position.x - 40;
-    spotLight3.position.y = avatar.position.y + 40;
-    spotLight3.position.z = avatar.position.z + 50;
-    **/
+    var direction = new THREE.Vector3().clone(sunMesh.position);
+    direction.sub(avatar.position);
+    directional.position.set(direction.x, direction.y, direction.z);
 }
