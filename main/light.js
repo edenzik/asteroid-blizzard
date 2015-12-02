@@ -1,5 +1,5 @@
 // add subtle ambient lighting
-var ambientLight = new THREE.AmbientLight(0xffffff / 8);
+var ambientLight = new THREE.AmbientLight(0xffffff / 10);
 scene.add(ambientLight);
 
 // Directional light to simulate sunlight

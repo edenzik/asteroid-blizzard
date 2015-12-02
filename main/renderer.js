@@ -19,7 +19,9 @@ function render() {
     // Update ship's reflection cube when appropriate
     if (counter % REFLECTION_UPDATE_CYCLE == 0) {
         counter %= REFLECTION_UPDATE_CYCLE;
+        avatar.visible = false;
         cubeCamera.update(renderer, scene);
+        avatar.visible = true;
     }
 
     earthMesh.position.x = avatar.position.x+7;

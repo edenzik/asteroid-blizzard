@@ -11,10 +11,10 @@ var avatarGeometry = new THREE.ConvexGeometry(points);
 // Move the ship's center back so that it rotates as expected
 avatarGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 0, -1.8) );
 
-var material = new THREE.MeshBasicMaterial({color: 0xffff40});
-// material.emissive = new THREE.Color("rgb(100%, 0%, 0%)");
-// material.specular = new THREE.Color("rgb(100%, 0%, 0%)");
-// material.shininess = 100;
+var material = new THREE.MeshPhongMaterial({color: 0xFF0000});
+material.emissive = new THREE.Color("rgb(100%, 0%, 0%)");
+material.specular = new THREE.Color("rgb(100%, 100%, 100%)");
+// material.shininess = 50;
 // material.metal = true;
 // material.shading = THREE.FlatShading;
 
@@ -25,11 +25,12 @@ avatar.traverse(function (e) {
 avatar.thrusting = false;
 
 // Add a wireframe mesh on top of the phong mesh
-var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000dd, wireframe: true, transparent: true } );
+var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0xFFFF00, wireframe: true, transparent: true } );
 avatar.add(new Physijs.ConvexMesh(avatarGeometry, wireframeMaterial));
 
 // Add cube camera for reflections
 var cubeCamera = new THREEx.CubeCamera(avatar);
+//cubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
 material.envMap = cubeCamera.textureCube;
 
 avatar.name="spaceship";
@@ -135,8 +136,6 @@ function updateAvatar() {
         avatar.rotateX(upDownTilt);
     }
     capMaxSpeed();
-
-    material.envMap = cubeCamera.textureCube;
 }
 
 // Orients the linear velocity to face in the direction of the ship
